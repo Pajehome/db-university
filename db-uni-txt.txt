@@ -58,6 +58,6 @@ SELECT `students`.`name`,`surname`, `degrees`.`name` AS `corso_di_laurea`, `depa
 SELECT `course_teacher`.`teacher_id` as `teacher`, `degrees`.`name` FROM `courses` JOIN `degrees` ON `degrees`.`id` = `courses`.`degree_id` JOIN `course_teacher` ON `course_teacher`.`teacher_id` = `degrees`.`id` GROUP BY `teacher`;
 
 6.
-SELECT `teachers`.`id`, `departments`.`name` FROM `teachers` JOIN `course_teacher` ON `teachers`.`id` = `course_teacher`.`teacher_id` JOIN `courses` ON `courses`.`id` = `course_teacher`.`course_id` JOIN `degrees` ON `degrees`.`id` = `courses`.`degree_id` JOIN `departments` ON `departments`.`id` = `degrees`.`department_id` WHERE `departments`.`name` = 'Dipartimento di Matematica';
+SELECT DISTINCT `teachers`.`id`, `departments`.`name` FROM `teachers` JOIN `course_teacher` ON `teachers`.`id` = `course_teacher`.`teacher_id` JOIN `courses` ON `courses`.`id` = `course_teacher`.`course_id` JOIN `degrees` ON `degrees`.`id` = `courses`.`degree_id` JOIN `departments` ON `departments`.`id` = `degrees`.`department_id` WHERE `departments`.`name` = 'Dipartimento di Matematica';
 
 
