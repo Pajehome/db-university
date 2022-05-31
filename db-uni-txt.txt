@@ -25,3 +25,36 @@ SELECT COUNT(`id`) FROM `teachers` WHERE `phone` IS NULL;d
 SELECT * FROM `teachers` WHERE `phone` IS NULL;
 
 
+
+31/05/2022
+
+//GROUP BY
+1.
+SELECT COUNT(`id`), YEAR(`enrolment_date`) AS `iscritti_per_anno` FROM `students` GROUP BY `iscritti_per_anno`;
+
+2.
+SELECT COUNT(`id`), `office_address` AS `ufficio` FROM `teachers` GROUP BY `ufficio`;
+
+3.
+SELECT AVG(`vote`), `exam_id` AS `appello_esame` FROM `exam_student` GROUP BY `appello_esame`;
+
+4.
+SELECT COUNT(`id`), `department_id` AS `dipartimento` FROM `degrees` GROUP BY `dipartimento`;
+
+//JOIN
+1.
+SELECT `degrees`.`name`, `students`.`registration_number` FROM `students` JOIN `degrees` ON `degrees`.`id` = `students`.`degree_id` WHERE `degrees`.`name` = 'Corso di Laurea in Economia';
+
+2.
+SELECT * FROM `degrees` JOIN `departments` ON `departments`.`id` = `degrees`.`department_id` WHERE `departments`.`name` = 'Dipartimento di Neuroscienze' AND `degrees`.`level` = 'magistrale';
+
+3.
+SELECT `course_teacher`.`course_id`, `teachers`.`name`,`surname` FROM `course_teacher` JOIN `teachers` ON `teachers`.`id` = `course_teacher`.`teacher_id` WHERE `teachers`.`id` = '44';
+
+4.
+SELECT `students`.`name`,`surname`, `degrees`.`name` AS `corso_di_laurea`, `departments`.`name` AS `dipartimento` FROM `students` JOIN `degrees` ON `degrees`.`id` = `students`.`degree_id` JOIN `departments` ON `departments`.`id` = `degrees`.`department_id` ORDER BY `students`.`name`,`surname` DESC;
+
+5.
+SELECT `course_teacher`.`teacher_id` as `teacher`, `degrees`.`name` FROM `courses` JOIN `degrees` ON `degrees`.`id` = `courses`.`degree_id` JOIN `course_teacher` ON `course_teacher`.`teacher_id` = `degrees`.`id` GROUP BY `teacher`;
+
+
